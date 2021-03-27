@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\usepackage{graphics} 
+\usepackage{amsmath, amsfonts, mathrsfs}
+\usepackage[utf8]{inputenc}
+\graphicspath{ {./} }
+
+\begin{document}
+\begin{center}
+{{\Large \sc Algorithms for Massive Data Sets}}
+\end{center}
+\rule{\textwidth}{1pt}
+\begin{description}
+\item[Student name and id:] Dumitru Muntean (s210515)
+\item[Hand-in for week:] 7
+\end{description}
+\rule{\textwidth}{1pt}
+
+\paragraph*{Exercise 1.1} 
+Compute the suffix tree T of string $S_1\$_1S_2\$_2...S_k\$_k$. Mark all the leaves according to which string the suffix starts in. For example, if suffix starts in $S_1$ its leaf should be marked with $\$_1$. For each internal node, store its string depth and the number of leaves bellow it marked with distinct \$. 
+\paragraph*{Exercise 1.2}
+The suffix tree uses O(n) space. Storing the number of leaves and the string depth in each node also takes linear space. In total O(n) space.
+
+\paragraph*{Exercise 1.3}
+To perform $BestPrefix(x,l)$, walk down the tree T from the root following the edge which match the next set of characters in $S_x$. Report the largest string depth of the node whose number of leaves with distinct $\$$ bellow it is greater or equal $l$.
+
+\paragraph*{Exercise 1.4}
+In $BestPrefix(x,l)$ query, T is traversed from the root downwards until eventually we will reach a path that stores $S_x$. For each node that is traversed we lookup string depth and number of leaves, and both takes constant time. Thus, $time=O(1 + 1 + |S_x|)=O(n_x)$.
+
+\paragraph*{Exercise 1.5}
+According to suffix tree properties, the number of leaves of an internal node reflects the number suffixes which share the common prefix from root to given node. By labeling the leaves in terms of which string the suffix is part of enables us to count the number of distinct strings matching in $\mathscr{C}$ for each node in T. That is, the node with the longest letter depth which has at least $l$ distinctly labeled leaves answers $BestPrefix$ query.    
+
+\paragraph*{Exercise 2.1}
+Compute the suffix tree T of $S_1\$_1S_2\$_2...S_k\$_k$. Mark all the leaves according to which string the suffix starts in. For example, if suffix starts in $S_1$ its leaf should be marked with $\$_1$. For each internal node store its string depth. Using a recursive algorithm, mark internal nodes with $\$_i$ if the leaves bellow it are marked with $\$_i$.
+
+\paragraph*{Exercise 2.2}
+Suffix tree T takes $O(n)$ space. Storing string depth and node labels also takes linear space. In total $O(n)$ space;
+
+\paragraph*{Exercise 2.3}
+Walk down the tree T from the root following the edge which match the next set of characters in $S_x$. Return the largest string depth of a node which is labeled with $\$_y$.
+
+\paragraph*{Exercise 2.4}
+The suffix tree T is traversed from the root downwards  at most $|S_x|$  nodes. For each node we check if it is labeled with $\$_y$ and query for string depth. Both of them takes constant time. Thus, $time=O(1 + 1 + |S_x|)=O(n_x)$
+
+\paragraph*{Exercise 2.5}
+As in longest common substring problem, by labeling the nodes in terms of which strings in $\mathscr{C}$ is the given suffix part of we can find the longest common string length of any string pair $S_x$ and $S_y$. Since the condition is that common string should be a prefix of $S_x$, we perfom a prefix search over the suffix tree T. That is , by doing a prefix search and finding the node which stores the longest string length and also labeled with $S_y$  we can answer $LongestPrefix$ query.
+
+\end{document}
